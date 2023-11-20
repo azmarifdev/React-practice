@@ -171,11 +171,10 @@ const Formik = () => {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
-        }));
+        setFormData((prevData) => ({ ...prevData, [name]: type === 'checkbox' ? checked : value }));
     };
+
+    console.log(formData);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -333,7 +332,10 @@ const Formik = () => {
 
                 {/* Submit and Reset Buttons */}
                 <div className="flex justify-between">
-                    <button type="reset" className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded">
+                    <button
+                        type="reset"
+                        onClick={handleReset}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded">
                         Reset
                     </button>
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
