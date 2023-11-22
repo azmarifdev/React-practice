@@ -155,35 +155,12 @@
 
 // RegistrationForm.js
 
+import { useFormik } from 'formik';
 import React, { useState } from 'react';
 
 const Formik = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        username: '',
-        phoneNumber: '',
-        gender: '',
-        agree: false,
-    });
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: type === 'checkbox' ? checked : value }));
-    };
-
-    console.log(formData);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form submitted:', formData);
-    };
-
-    const handleReset = () => {
-        setFormData({
+    const formik = useFormik({
+        initialValues: {
             name: '',
             email: '',
             password: '',
@@ -192,13 +169,16 @@ const Formik = () => {
             phoneNumber: '',
             gender: '',
             agree: false,
-        });
-    };
-
+        },
+        onSubmit: (values, { resetForm }) => {
+            console.log(values);
+            resetForm({ values: '' });
+        },
+    });
     return (
         <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Registration Form</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                 {/* Name */}
                 <div className="mb-4">
                     <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
@@ -208,8 +188,8 @@ const Formik = () => {
                         type="text"
                         id="name"
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -224,8 +204,8 @@ const Formik = () => {
                         type="email"
                         id="email"
                         name="email"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -240,8 +220,8 @@ const Formik = () => {
                         type="password"
                         id="password"
                         name="password"
-                        value={formData.password}
-                        onChange={handleChange}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -256,8 +236,8 @@ const Formik = () => {
                         type="password"
                         id="confirmPassword"
                         name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
+                        value={formik.values.confirmPassword}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -272,8 +252,8 @@ const Formik = () => {
                         type="text"
                         id="username"
                         name="username"
-                        value={formData.username}
-                        onChange={handleChange}
+                        value={formik.values.username}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -288,8 +268,8 @@ const Formik = () => {
                         type="tel"
                         id="phoneNumber"
                         name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
+                        value={formik.values.phoneNumber}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required
                     />
@@ -303,8 +283,8 @@ const Formik = () => {
                     <select
                         id="gender"
                         name="gender"
-                        value={formData.gender}
-                        onChange={handleChange}
+                        value={formik.values.gender}
+                        onChange={formik.handleChange}
                         className="w-full p-2 border rounded"
                         required>
                         <option value="">Select Gender</option>
@@ -320,8 +300,8 @@ const Formik = () => {
                         type="checkbox"
                         id="agree"
                         name="agree"
-                        checked={formData.agree}
-                        onChange={handleChange}
+                        checked={formik.values.agree}
+                        onChange={formik.handleChange}
                         className="mr-2"
                         required
                     />
@@ -332,12 +312,12 @@ const Formik = () => {
 
                 {/* Submit and Reset Buttons */}
                 <div className="flex justify-between">
-                    <button
+                    {/* <button
                         type="reset"
                         onClick={handleReset}
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded">
                         Reset
-                    </button>
+                    </button> */}
                     <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                         Submit
                     </button>
