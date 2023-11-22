@@ -5,8 +5,8 @@
 // import TodoGpt from './components/gpt/TodoGpt';
 // import ReactForm from './components/ReactForm';
 
-import Formik from './components/ReactFormik/Formik';
-// import YupForm from './components/ReactFormik/YupForm';
+// import Formik from './components/ReactFormik/Formik';
+import YupForm from './components/ReactFormik/YupForm';
 // import YupFormBlack from './components/ReactFormik/YupFormBlack';
 // import YupFormChat from './components/ReactFormik/YupFormChat';
 
@@ -25,8 +25,8 @@ function App() {
 
             {/* FORMIK */}
             <div className="">
-                <Formik />
-                {/* <YupForm /> */}
+                {/* <Formik /> */}
+                <YupForm />
                 {/* <YupFormChat /> */}
                 {/* <YupFormBlack /> */}
             </div>

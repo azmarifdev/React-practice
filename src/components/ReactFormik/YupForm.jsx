@@ -59,7 +59,7 @@ const YupForm = () => {
                 <label htmlFor="agree" className="flex items-center">
                     <input
                         type="checkbox"
-                        id="agree"
+                        id="agree" 
                         name="agree"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
